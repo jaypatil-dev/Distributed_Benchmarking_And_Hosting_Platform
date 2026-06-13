@@ -3,8 +3,6 @@
 
 A production-grade distributed platform that evaluates contestant-submitted trading engines under real-world stress conditions. The platform containerizes submitted code, spawns a distributed fleet of trading bots, captures granular telemetry, and streams results to a live leaderboard in real time.
 
-Built by **Yash & Jay** for IICPC Summer Hackathon 2026.
-
 ---
 
 ## Table of Contents
