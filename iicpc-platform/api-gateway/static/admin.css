@@ -1,0 +1,148 @@
+.admin-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-card .label {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.stat-card .value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6C63D8;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #2a2a4a;
+  padding-bottom: 16px;
+}
+
+.admin-tab {
+  background: transparent;
+  border: none;
+  padding: 10px 24px;
+  color: #888;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  border-radius: 0;
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+.admin-tab.active {
+  color: #6C63D8;
+  border-bottom-color: #6C63D8;
+  background: transparent;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-header h3 {
+  font-size: 16px;
+  color: #e0e0e0;
+}
+
+.refresh-btn {
+  background: #0f0f1a;
+  border: 1px solid #2a2a4a;
+  border-radius: 6px;
+  padding: 8px 16px;
+  color: #888;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+.refresh-btn:hover {
+  border-color: #6C63D8;
+  color: #6C63D8;
+}
+
+.table-container {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.delete-btn {
+  background: transparent;
+  border: 1px solid #D85A30;
+  border-radius: 6px;
+  padding: 5px 12px;
+  color: #D85A30;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+.delete-btn:hover {
+  background: #D85A30;
+  color: white;
+}
+
+.trigger-btn {
+  background: transparent;
+  border: 1px solid #0F9B77;
+  border-radius: 6px;
+  padding: 5px 12px;
+  color: #0F9B77;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+.trigger-btn:hover {
+  background: #0F9B77;
+  color: white;
+}
+
+.role-admin {
+  color: #F5A623;
+  font-weight: bold;
+}
+
+.role-contestant {
+  color: #6C63D8;
+}

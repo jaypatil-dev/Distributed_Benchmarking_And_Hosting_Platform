@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IICPC — My Submissions</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <div id="submissions-page">
+    <header>
+      <h1>⚡ IICPC</h1>
+      <span>Summer Hackathon 2026</span>
+      <div class="header-right">
+        <span id="sub-logged-user"></span>
+        <a href="/">📤 Submit Code</a>
+        <a href="http://localhost:3000" target="_blank">🏆 Leaderboard</a>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <div class="container" style="max-width:1100px">
+      <div class="card">
+        <h2>📋 My Submissions</h2>
+        <p class="subtitle" id="sub-count">Loading submissions...</p>
+
+        <div class="submissions-table">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Submission ID</th>
+                <th>Language</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="submissions-body">
+              <tr><td colspan="6" class="empty">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+  <script>
+    // load submissions on page load
+    window.onload = () => {
+      checkAuthAndLoadSubmissions();
+    };
+  </script>
+</body>
+</html>

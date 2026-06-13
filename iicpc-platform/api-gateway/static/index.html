@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IICPC — Login</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- AUTH PAGE -->
+  <div id="auth-page">
+    <header>
+      <h1>⚡ IICPC</h1>
+      <span>Summer Hackathon 2026</span>
+    </header>
+
+    <div class="container">
+      <div class="card">
+
+        <!-- tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+          <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="login-form">
+          <h2>Welcome Back</h2>
+          <p class="subtitle">Login to your IICPC account</p>
+
+          <div class="form">
+            <div class="field">
+              <label>Username</label>
+              <input type="text" id="login-username" placeholder="Enter username"/>
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" id="login-password" placeholder="Enter password"/>
+            </div>
+            <div id="login-error" class="error" style="display:none"></div>
+            <button onclick="login()">Login →</button>
+          </div>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="register-form" style="display:none">
+          <h2>Create Account</h2>
+          <p class="subtitle">Join IICPC Summer Hackathon 2026</p>
+
+          <div class="form">
+            <div class="field">
+              <label>Role</label>
+              <div class="role-selector">
+                <button class="role-btn active" onclick="selectRole('contestant', this)">
+                  👤 Contestant
+                </button>
+                <button class="role-btn" onclick="selectRole('admin', this)">
+                  🔧 Admin
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Username</label>
+              <input type="text" id="reg-username" placeholder="Choose username"/>
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" id="reg-password" placeholder="Choose password"/>
+            </div>
+            <div class="field">
+              <label>Confirm Password</label>
+              <input type="password" id="reg-confirm" placeholder="Confirm password"/>
+            </div>
+
+            <div class="field" id="secret-field" style="display:none">
+              <label>Admin Secret Key</label>
+              <input type="password" id="reg-secret" placeholder="Enter admin secret key"/>
+            </div>
+
+            <div id="register-error" class="error" style="display:none"></div>
+            <button onclick="register()">Create Account →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT PAGE -->
+  <div id="submit-page" style="display:none">
+    <header>
+      <h1>⚡ IICPC</h1>
+      <span>Summer Hackathon 2026</span>
+      <div class="header-right">
+        <span id="logged-in-user"></span>
+        <a href="/my-submissions">📋 My Submissions</a>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="card">
+        <h2>Submit Your Solution</h2>
+        <p class="subtitle">Upload your trading engine for evaluation</p>
+
+        <div class="form">
+
+          <div class="field">
+            <label>Language</label>
+            <select id="language">
+              <option value="">Select language</option>
+              <option value="cpp">C++</option>
+              <option value="rust">Rust</option>
+              <option value="go">Go</option>
+              <option value="python">Python</option>
+              <option value="java">Java</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Your Code</label>
+            <div class="code-tabs">
+              <button class="tab active" onclick="switchTab('editor', event)">✏️ Type Code</button>
+              <button class="tab" onclick="switchTab('upload', event)">📁 Upload File</button>
+            </div>
+
+            <div id="editor-tab">
+              <textarea id="code-editor" placeholder="Paste your code here..."></textarea>
+            </div>
+
+            <div id="upload-tab" style="display:none">
+              <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                <div class="upload-icon">📂</div>
+                <p>Click to upload your file</p>
+                <span id="file-name">No file selected</span>
+              </div>
+              <input type="file" id="file-input" style="display:none" onchange="handleFile(this)"/>
+            </div>
+          </div>
+
+          <div id="submit-error" class="error" style="display:none"></div>
+          <button id="submit-btn" onclick="submitCode()">Submit Solution →</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATUS PAGE -->
+  <div id="status-page" style="display:none">
+    <header>
+      <h1>⚡ IICPC</h1>
+      <span>Summer Hackathon 2026</span>
+      <div class="header-right">
+        <span id="status-logged-user"></span>
+        <a href="/submissions">📋 My Submissions</a>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="card">
+        <div class="success-icon">✅</div>
+        <h2>Submission Received!</h2>
+        <p class="subtitle">Your trading engine is being evaluated</p>
+
+        <div class="details">
+          <div class="detail-row">
+            <span class="detail-label">Submission ID</span>
+            <span class="detail-value" id="result-id"></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Contestant</span>
+            <span class="detail-value" id="result-contestant"></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Language</span>
+            <span class="detail-value" id="result-language"></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Status</span>
+            <span class="detail-value status-badge" id="result-status"></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Submitted At</span>
+            <span class="detail-value" id="result-time"></span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button onclick="goToSubmissions()">📋 View All Submissions</button>
+          <button onclick="goBack()" class="secondary">← Submit Another</button>
+          <a href="http://localhost:3000" target="_blank">
+            <button class="secondary">🏆 Leaderboard</button>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

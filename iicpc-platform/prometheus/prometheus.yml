@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+
+  - job_name: 'api-gateway'
+    static_configs:
+      - targets: ['api-gateway:8080']
+
+  - job_name: 'telemetry-ingester'
+    static_configs:
+      - targets: ['telemetry-ingester:2112']
+
+  - job_name: 'leaderboard-service'
+    static_configs:
+      - targets: ['leaderboard-service:2113']
+
+  - job_name: 'bot-fleet'
+    static_configs:
+      - targets: ['bot-fleet:2114']
+
+  - job_name: 'submission-engine'
+    static_configs:
+      - targets: ['submission-engine:2115']
