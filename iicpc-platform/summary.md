@@ -1,6 +1,5 @@
 # IICPC Summer Hackathon 2026
 ## Distributed Benchmarking & Hosting Platform
-**Team:** Yash & Jay
 
 ---
 
